@@ -9,11 +9,25 @@ def menu():
     print('3) Scissors: ✌️')
     print('4) Lizard: 🦎')
     print('5) Spock: 🖖')
+    print('================================')
+    print('\033[1mRULES\033[0m')
+    print("""
+    Scissors cut Paper.
+    Paper covers Rock.
+    Rock crushes Lizard.
+    Lizard poisons Spock.
+    Spock smashes Scissors.
+    Scissors beat Lizard.
+    Lizard eats Paper.
+    Paper disproves Spock.
+    Spock vaporizes Rock.
+    Rock breaks Scissors.
+          """)
 
 menu()
 def player_choice():
     player = int(input('Choose your number (1-5): '))
-    if player > 5 or player < 1:
+    if player > 5 or player < 1: # if the player input is not between 1 and 5
         print('Invalid choice. Please choose a number between 1 and 5.')
         return player_choice()
     else:
@@ -70,15 +84,15 @@ def winning_conditions(player, computer):
     elif (player == 5 and computer == 4):
         print('Computer wins! Lizard 🦎 poisons Spock 🖖.')
     else:
-        print('Oops! You encountered an ultra rare error that requires a restart.')
+        print('Oops! You encountered an ultra rare error that requires a restart.'), quit()
 
 
 def playAgain():
-    print('\n' + '='*40 + '\n')
+    print('\n' + '='*40 + '\n') #boldness
     play_again = input('Do you want to play again? (y/n) OR (yes/no): ').lower()
     if play_again == 'yes' or play_again == 'y':
         print('\n' + '='*40 + '\n')
-        menu()
+        menu() # Show the menu again before restarting
         main()  # Restart the game
     elif play_again == 'no' or play_again == 'n':
         print('Thanks for playing!')
@@ -86,9 +100,9 @@ def playAgain():
         print('\033[1mInvalid input. Should be y/n OR yes/no.\033[0m')
         playAgain()  # Ask again if input is invalid
 
-def main():
+def main(): #overall function to run the game
     print('\n' + '='*40 + '\n')
-    player = player_choice()
+    player = player_choice() #since we are returning the player choice, we can store it in a variable and instead of printing it, we can use it in the next function
     computer = computer_choice()
     winning_conditions(player, computer)
     playAgain()
